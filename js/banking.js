@@ -12,20 +12,20 @@ function getTotalValue(a, b) {
   const total = depositeValueFloat + b;
   depositTotal.innerText = total;
 }
+function balanceUpdateTotal(c) {
+  const balance = document.getElementById("balance-total");
+  const balanceValue = balance.innerText;
+  const balanceFloat = parseFloat(balanceValue);
+  const totalBalance = c + balanceFloat;
+  balance.innerText = totalBalance;
+}
 document
   .getElementById("deposit-button")
   .addEventListener("click", function () {
     //function
     const depositAmountFloat = getInputValue("deposit-input");
-
-    //deposit get
     getTotalValue("deposit-total", depositAmountFloat);
-    //update balance;
-    const balance = document.getElementById("balance-total");
-    const balanceValue = balance.innerText;
-    const balanceFloat = parseFloat(balanceValue);
-    const totalBalance = depositAmountFloat + balanceFloat;
-    balance.innerText = totalBalance;
+    balanceUpdateTotal(depositAmountFloat);
   });
 //withdraw balance
 document.getElementById("withdraw-btn").addEventListener("click", function () {
