@@ -19,6 +19,18 @@ function balanceUpdateTotal(c) {
   const totalBalance = c + balanceFloat;
   balance.innerText = totalBalance;
 }
+function balanceMinus(d, isAdd) {
+  const balanceTotal = document.getElementById("balance-total");
+  const balanceText = balanceTotal.innerText;
+  const balanceFloatTotal = parseFloat(balanceText);
+  if (isAdd == true) {
+    const grandTotal = balanceFloatTotal + d;
+    balanceTotal.innerText = grandTotal;
+  } else {
+    const grandTotal = balanceFloatTotal - d;
+    balanceTotal.innerText = grandTotal;
+  }
+}
 document
   .getElementById("deposit-button")
   .addEventListener("click", function () {
@@ -31,20 +43,21 @@ document
 document.getElementById("withdraw-btn").addEventListener("click", function () {
   //function
   const withdrawFloat = getInputValue("withdraw-input");
+  getTotalValue("withdraw-total", withdrawFloat, true);
+  balanceMinus(withdrawFloat, false);
   //
   //   const withdrawTotal = document.getElementById("withdraw-total");
   //   const withdrawInner = withdrawTotal.innerText;
   //   const withdrawFloatDisplay = parseFloat(withdrawInner);
   //   const withdrawTotalDisplay = withdrawFloat + withdrawFloatDisplay;
   //   withdrawTotal.innerText = withdrawTotalDisplay;
-  getTotalValue("withdraw-total", withdrawFloat);
+
   //balance total minus;
-  const balanceTotal = document.getElementById("balance-total");
-  const balanceText = balanceTotal.innerText;
-  const balanceFloatTotal = parseFloat(balanceText);
-  //
-  const grandTotal = balanceFloatTotal - withdrawFloat;
-  balanceTotal.innerText = grandTotal;
+  // const balanceTotal = document.getElementById("balance-total");
+  // const balanceText = balanceTotal.innerText;
+  // const balanceFloatTotal = parseFloat(balanceText);
+  // const grandTotal = balanceFloatTotal - withdrawFloat;
+  // balanceTotal.innerText = grandTotal;
   //clean input
   //   withdrawInput.value = "";
 });
